@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autorun=false"></script>
+<script src="../src/jquery.textchange.js"></script>
+<meta charset="utf-8" />
+<title>jQuery TextChange Examples</title>
+</head>
+<body style="padding-bottom: 100px;">
+<div class="container">
+    <h2>jQuery TextChange plugin with timeout.</h2>
+    <hr />
+    
+    <h3>Example</h3>
+
+    <pre class="prettyprint lang-javascript run">
+
+        $('input#example-input').on('textchange.namespace1', 300, function(e) {
+            $('span#example-result').html($(this).val());
+        });
+    </pre>
+
+    <div class="form-group">
+        <input type="text" class="form-control" id="example-input" placeholder="Type something" autofocus>
+    </div>
+
+    <div class="form-group mt-2">
+        <strong class="me-2">Result:</strong><span id="example-result"></span>
+    </div>
+
+    <!-- Available options -->
+    <h2 class="mt-5">Available options</h2>
+    <hr />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Option
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Default value
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>event.namespace</td>
+                <td>
+                    String
+                </td>
+                <td>
+                </td>
+                <td>
+                    You can define a jQuery event namespace, see <a href="https://api.jquery.com/event.namespace/" target="_blank">https://api.jquery.com/event.namespace/</a> for more information.
+                </td>
+            </tr>
+            <tr>
+                <td>timeout</td>
+                <td>
+                    Integer (milliseconds)
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    You can define a timeout which means the textchange event will be triggered if the user stops typing and timeout passed.
+                </td>
+            </tr>
+            <tr>
+                <td>callback</td>
+                <td>
+                    Function
+                </td>
+                <td>
+                    undefined
+                </td>
+                <td>
+                    This callback function will be triggered when a textchange occurs.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Available methods -->
+    <h2 class="mt-5">Available methods</h2>
+    <hr />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Method
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>on('textchange.namespace', timeout, callback)</td>
+                <td>
+                    You can subscribe to textchange event with a namespace. Note that the namespace is optional. Example:
+    <pre class="prettyprint lang-javascript runnable mt-3">
+        <!--
+            $('input#onoff-input').val('').focus();
+            $('span#onoff-status').html('Subscribed');
+            $('span#onoff-result').html('');
+        -->
+        $('input#onoff-input').on('textchange.namespace1', function(e) {
+            $('span#onoff-result').html($(this).val());
+        });
+    </pre>
+                </td>
+            </tr>
+            <tr>
+                <td>off('textchange.namespace')</td>
+                <td>
+                    You can unsubscribe from textchange event with a namespace. Note that the namespace is optional. Example:
+    <pre class="prettyprint lang-javascript runnable mt-3">
+        <!--
+            $('input#onoff-input').val('').focus();
+            $('span#onoff-status').html('Not subscribed');
+            $('span#onoff-result').html('');
+        -->
+        $('input#onoff-input').off('textchange.namespace1');
+    </pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <input type="text" class="form-control" id="onoff-input" placeholder="Subscribe and type something" autofocus>
+    </div>
+
+    <div class="form-group mt-2">
+        <strong class="me-2">Status:</strong><span id="onoff-status">Not subscribed</span>
+    </div>
+
+    <div class="form-group mt-2">
+        <strong class="me-2">Result:</strong><span id="onoff-result"></span>
+    </div>
+    
+    <hr />
+    <footer class="text-center"><a href="https://github.com/wraplr/jquery-textchange" target="_blank">Go to the project.</a></footer>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('pre.prettyprint.runnable, pre.prettyprint.run').each(function(index) {
+            // get section
+            var $section = $(this);
+
+            // get js code
+            var code = $(this).html().replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+
+            // remove commented code
+            $(this).html($(this).html().replace(/(<([^>]+)>)/gi, ''));
+            
+            // runnable
+            if ($section.hasClass('runnable')) {
+                var $button = $('<button class="btn btn-primary">Run the code</button>');
+
+                $button.on('click', {code: code}, function(event) {
+                    eval(event.data.code);
+                });
+
+                $button.insertAfter($section);
+            }
+
+            // run
+            if ($section.hasClass('run')) {
+                eval(code);
+            }
+        });
+
+        // pretty print
+        PR.prettyPrint();
+    });
+</script>
+</body>
+</html>
