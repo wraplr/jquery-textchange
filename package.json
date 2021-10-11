@@ -1,6 +1,6 @@
 {
   "name": "@wraplr/jquery-textchange",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "jQuery TextChange plugin with timeout",
   "main": "src/jquery.textchange.js",
   "repository": {
