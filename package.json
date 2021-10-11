@@ -1,0 +1,21 @@
+{
+  "name": "@wraplr/jquery-textchange",
+  "version": "1.0.0",
+  "description": "jQuery TextChange plugin with timeout",
+  "main": "src/jquery.textchange.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wraplr/jquery-textchange.git"
+  },
+  "keywords": [
+    "jquery",
+    "javascript",
+    "textchange",
+    "wraplr"
+  ],
+  "author": "wraplr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wraplr/jquery-textchange/issues"
+  }
+}
