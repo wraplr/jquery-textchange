@@ -46,7 +46,13 @@
 
         eventString: function(namespace)
         {
-            var events = ['input', 'change', 'propertychange', 'paste', 'focusout'];
+            var events = [
+                'input',
+                'change',
+                'propertychange',
+                'paste',
+                'focusout',
+            ];
 
             if (namespace != '') {
                 $.each(events, function(index, event) {
@@ -55,7 +61,7 @@
             }
 
             return events.join(' ');
-        }
+        },
     };
 
     $.fn.textchange = function(data, handler)
@@ -98,7 +104,15 @@
 
             $(this).each(function(key, inp) {
                 if ($.isFunction($(inp).val)) {
-                    var obj = {inp: inp, guid: handleObj.guid, val: $(inp).val(), old: $(inp).val(), ns: handleObj.namespace, to: timeout, dt: 0};
+                    var obj = {
+                        inp: inp,
+                        guid: handleObj.guid,
+                        val: $(inp).val(),
+                        old: $(inp).val(),
+                        ns: handleObj.namespace,
+                        to: timeout,
+                        dt: 0,
+                    };
 
                     $(inp).on(method.eventString(handleObj.namespace), function(e) {
                         if (e.type == 'focusout') {
